@@ -60,7 +60,7 @@ def save_as_csv(temperatures, viscosities, filename):
 if __name__=="__main__":
     # Parameters
     date = "data/2025-02-04/"
-    video_range = (1, 48)
+    video_range = (19, 48)
     save_path = date+"extracted/"
     tempFilename = date+"temperature"
     q_index = (35,130)
