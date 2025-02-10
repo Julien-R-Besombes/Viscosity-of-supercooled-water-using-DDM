@@ -7,7 +7,7 @@ from matplotlib.animation import PillowWriter, FuncAnimation
 
 video = 46
 date="data/2025-02-04/"
-prefixe = date+"video"+str(video)+"/Video"+str(video)+"image"
+prefixe = date+"video"+str(video)+"/video"+str(video)+"_resized/Video"+str(video)+"image"
 N = 500
 images = []
 imDiff = []

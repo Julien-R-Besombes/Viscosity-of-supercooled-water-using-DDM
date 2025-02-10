@@ -1,8 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 import csv
-import fastddm as fddm
 from fastddm.fit import simple_structure_function, fit
 from fastddm.azimuthalaverage import AAReader
 import scipy.constants as c
@@ -16,7 +14,7 @@ def get_viscosity(filename, T, q_index = (35,130)):
 
     # get tau(q) for each q
     tau = []
-    for i in tqdm(range(*q_index)):
+    for i in range(*q_index):
         result = fit(simple_structure_function, xdata=aa.tau, ydata=aa.data[i]/np.max(aa.data[i]), weights=weights)
         tau.append(result.best_values["tau"])
 
@@ -77,5 +75,6 @@ if __name__=="__main__":
         viscosities.append(eta)
 
     # Save as csv
-    save_as_csv(temperatures, viscosities, date+"viscosity_temperature_curve")
+    temp = [temperatures[i] for i in range(*video_range)]
+    save_as_csv(temp, viscosities, date+"viscosity_temperature_curve")
     print("Done")
