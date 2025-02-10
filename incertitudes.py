@@ -44,7 +44,7 @@ for k in tqdm(range(9,20)):
     y=np.array(y)
     x=np.array(x)
     x = x[y>1e-3]
-    y=y[y>1e-3]    
+    y=y[y>1e-3]
     a.append(np.polyfit(np.log(x), np.log(y), 1)[0])
     b.append(np.polyfit(np.log(x), np.log(y), 1)[1])
     

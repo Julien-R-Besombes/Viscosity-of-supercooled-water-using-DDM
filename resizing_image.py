@@ -29,6 +29,6 @@ def process_folder(folder_name):
                     resize_image(input_path, output_path)
 
 if __name__ == "__main__":
-    folders = ['data/2025-01-28', 'data/2025-02-04']
+    folders = ['data/2025-02-04']
     for folder in tqdm(folders):
         process_folder(folder)

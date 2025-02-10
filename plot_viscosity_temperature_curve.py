@@ -14,8 +14,8 @@ viscosity = data['Viscosity']
 # Plot the data
 plt.figure(figsize=(10, 6))
 plt.plot(temperature, viscosity*1e3, marker='o', linestyle='-', color='b')
-plt.title('Viscosity vs Temperature')
-plt.xlabel('Temperature (K)')
-plt.ylabel('Viscosity (mPa.s)')
+plt.title('Viscosté en fonction de la température, jour 2')
+plt.xlabel('Température (K)')
+plt.ylabel('Viscosité (mPa.s)')
 plt.grid(True)
 plt.show()

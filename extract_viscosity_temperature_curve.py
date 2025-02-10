@@ -61,7 +61,7 @@ if __name__=="__main__":
     video_range = (19, 48)
     save_path = date+"extracted/"
     tempFilename = date+"temperature"
-    q_index = (35,130)
+    q_index = (35,100)
 
     # Get temperatures
     temperatures = get_temperature(tempFilename)

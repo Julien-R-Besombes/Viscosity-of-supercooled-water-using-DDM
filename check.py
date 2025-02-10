@@ -5,7 +5,7 @@ import matplotlib.animation as animation
 from matplotlib.animation import PillowWriter, FuncAnimation
 
 
-video = 46
+video = 22
 date="data/2025-02-04/"
 prefixe = date+"video"+str(video)+"/video"+str(video)+"_resized/Video"+str(video)+"image"
 N = 500
