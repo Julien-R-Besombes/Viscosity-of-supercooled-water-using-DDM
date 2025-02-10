@@ -33,7 +33,7 @@ if __name__=="__main__":
     video_range = (1, 48)
     save_path = date+"extracted/"
     for video in tqdm(range(*video_range)):
-        prefix = date+"/video"+str(video)+"video"+str(video)+"_resized/Video"+str(video)+"image"
+        prefix = date+"/video"+str(video)+"/video"+str(video)+"_resized/Video"+str(video)+"image"
         buildDDMFile(prefix, save_path=save_path)
 
 
