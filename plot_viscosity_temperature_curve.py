@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the data
-date = "2025-02-04/"
+date = "2025-02-11/"
 prefix="data/"+date
 data = np.genfromtxt(prefix+'viscosity_temperature_curve.csv', skip_header=1, delimiter=',', names=['Temperature', 'Viscosity'])
 
@@ -19,9 +19,9 @@ viscosityArt = dataArt['Viscosity']
 
 # Plot the data
 plt.figure(figsize=(10, 6))
-plt.plot(temperature, viscosity*1e3, label='Nos valeurs :(', marker='o', linestyle='-', color='b')
+plt.scatter(temperature, viscosity*1e3, label='Nos valeurs :(', marker='o', color='b')
 plt.plot(temperatureArt, viscosityArt, label='Valeurs de l\'article :)', marker='o', linestyle='-', color='r')
-plt.title('Viscosité en fonction de la température, jour 2')
+plt.title('Viscosité en fonction de la température')
 plt.xlabel('Température (K)')
 plt.ylabel('Viscosité (mPa.s)')
 plt.grid(True)

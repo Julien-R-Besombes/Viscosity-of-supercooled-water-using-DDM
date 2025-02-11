@@ -31,6 +31,8 @@ for k in tqdm(range(9,20)):
     q = aa.k
     time = aa.tau
     weights = 1/np.sqrt(aa.tau)
+    simple_structure_function.set_param_hint("B", min=-np.inf, max=np.inf, value=0.0)
+
     
     q_index = [35,130]
     tau = []

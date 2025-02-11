@@ -5,13 +5,13 @@ from fastddm.fit import simple_structure_function, fit
 from fastddm.azimuthalaverage import AAReader
 import scipy.constants as c
 
-def get_viscosity(filename, T, q_index = (35,130)):
+def get_viscosity(filename, T, q_index = (15,62)):
     r = AAReader(filename)
     aa = r.load()
     q = aa.k
     time = aa.tau
     weights = 1/np.sqrt(time)
-
+    simple_structure_function.set_param_hint("B", min=-np.inf, max=np.inf, value=0.0)
     # get tau(q) for each q
     tau = []
     for i in range(*q_index):
@@ -20,20 +20,22 @@ def get_viscosity(filename, T, q_index = (35,130)):
 
     x = q[q_index[0]:q_index[1]]
     y = tau
-    y=np.array(y)
-    x=np.array(x)
+    y = np.array(y)
+    x = np.array(x)
 
     # filter incoherent values
     x = x[y>1e-3]
     y = y[y>1e-3]
 
     # linear regression in log-log scale
-    a, b = np.polyfit(np.log(x), np.log(y), 1)
+    a1, b = np.polyfit(np.log(x), np.log(y), 1)
 
     # get viscosity via Stokes-Einstein relation
     D = np.exp(-b)*1e-12 # m2/s
     a = 345e-9/2 # m
     eta = c.Boltzmann*T/(6*np.pi*D*a)
+    
+    print(f"Video {filename} a: {a1} b: {b} D: {D} Viscosity: {eta:.2e} Pa.s et Temperature: {T} K")
 
     return eta
 
@@ -57,19 +59,19 @@ def save_as_csv(temperatures, viscosities, filename):
 
 if __name__=="__main__":
     # Parameters
-    date = "data/2025-02-04/"
-    video_range = (19, 48)
+    date = "data/2025-02-11/"
+    video_range = (1, 27)
     save_path = date+"extracted/"
     tempFilename = date+"temperature"
-    q_index = (35,100)
+    q_index = (15,65)
 
     # Get temperatures
     temperatures = get_temperature(tempFilename)
 
     # Get viscosities
     viscosities = []
-    for video in tqdm(range(*video_range)):
-        filename = save_path+"resized"+str(video)+".aa.ddm"
+    for video in range(*video_range):
+        filename = save_path+"resized_size256_"+str(video)+".aa.ddm"
         T = temperatures[video]
         eta = get_viscosity(filename, T, q_index)
         viscosities.append(eta)
