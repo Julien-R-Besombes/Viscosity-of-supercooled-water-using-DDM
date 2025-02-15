@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import matplotlib.animation as animation
-from matplotlib.animation import PillowWriter, FuncAnimation
 
 
 video = 22
@@ -28,15 +26,3 @@ plt.subplot(1,3,3)
 plt.title(r"Différence à $\Delta t = 499 \delta t$")
 plt.imshow(imDiff[499], cmap='gray')
 plt.show()
-
-fig, ax = plt.subplots()
-
-def update(frame):
-    ax.imshow(imDiff[frame])
-    ax.set_title("Différence à $\Delta t$ = "+str(frame)+" $\delta t$, défilement x2")
-
-ani = animation.FuncAnimation(fig, update, frames=N, interval=5, repeat=False) 
-plt.show()
-plt.close(fig)
-writer = PillowWriter(fps=200)
-ani.save('ani.gif', writer=writer)
