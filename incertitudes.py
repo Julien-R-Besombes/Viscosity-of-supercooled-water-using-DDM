@@ -6,7 +6,6 @@ from fastddm.azimuthalaverage import AAReader
 from scipy.optimize import curve_fit
 import scipy.constants as c
 
-
 a = []
 b = []
 b2 = []
@@ -14,10 +13,10 @@ b2 = []
 def f(x, b2):
     return np.exp(-2*np.log(x) + b2)
 
-for k in tqdm(range(9,20)):
+for k in tqdm(range(1,11)):
     video = k
-    date = "data/2025-02-04/"
-    filename = date+"extracted/resized"+ str(video)+".aa.ddm"
+    date = "data/2025-02-18/"
+    filename = date+"extracted/resized_size512_"+ str(video)+".aa.ddm"
     
     r = AAReader(filename)
     aa = r.load()
@@ -26,7 +25,7 @@ for k in tqdm(range(9,20)):
     weights = 1/np.sqrt(aa.tau)
     simple_structure_function.set_param_hint("B", min=-np.inf, max=np.inf, value=0.0)
 
-    q_index = [35,130]
+    q_index = [30,100]
     tau = []
     for i in range(q_index[0], q_index[1]):
         result = fit(simple_structure_function, xdata=aa.tau, ydata=aa.data[i]/np.max(aa.data[i]), weights=weights)
@@ -80,8 +79,8 @@ plt.ylabel("b2")
 plt.legend()
 plt.show()
 
-D1 = np.array(np.exp((-1)*b)*1e-12) # en m2/s  
-T = 273 + 20
+D1 = np.array(np.exp((-1)*b)*1e-12) # en m²/s  
+T = 273.15 + 20
 r = (345e-9)/2
 eta1 = c.Boltzmann*T/(6*np.pi*D1*r)
 eta1_mean,eta1_std=np.mean(eta1),np.std(eta1)
@@ -92,7 +91,7 @@ plt.ylabel("eta1")
 plt.legend()
 plt.show()
 
-D2 = np.array(np.exp((-1)*b2)*1e-12) # en m2/s  
+D2 = np.array(np.exp((-1)*b2)*1e-12) # en m²/s  
 eta2 = c.Boltzmann*T/(6*np.pi*D2*r)
 eta2_mean, eta2_std = np.mean(eta2), np.std(eta2)
 

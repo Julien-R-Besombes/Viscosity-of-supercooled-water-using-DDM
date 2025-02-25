@@ -1,5 +1,4 @@
 import numpy as np
-from tqdm import tqdm
 import csv
 from fastddm.fit import simple_structure_function, fit
 from fastddm.azimuthalaverage import AAReader
@@ -59,11 +58,11 @@ def save_as_csv(temperatures, viscosities, filename):
 
 if __name__=="__main__":
     # Parameters
-    date = "data/2025-02-11/"
-    video_range = (1, 27)
+    date = "data/2025-02-18/"
+    video_range = (1, 29)
     save_path = date+"extracted/"
     tempFilename = date+"temperature"
-    q_index = (15,65)
+    q_index = (30,100)
 
     # Get temperatures
     temperatures = get_temperature(tempFilename)
@@ -71,12 +70,12 @@ if __name__=="__main__":
     # Get viscosities
     viscosities = []
     for video in range(*video_range):
-        filename = save_path+"resized_size256_"+str(video)+".aa.ddm"
+        filename = save_path+"resized_size512_"+str(video)+".aa.ddm"
         T = temperatures[video]
         eta = get_viscosity(filename, T, q_index)
         viscosities.append(eta)
 
     # Save as csv
     temp = [temperatures[i] for i in range(*video_range)]
-    save_as_csv(temp, viscosities, date+"viscosity_temperature_curve")
+    save_as_csv(temp, viscosities, date+"viscosity_temperature_curve_512")
     print("Done")

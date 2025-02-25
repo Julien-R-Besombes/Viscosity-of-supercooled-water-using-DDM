@@ -22,7 +22,7 @@ def process_folder(folder_name):
             output_subfolder = os.path.join(subfolder_path, f"{subfolder}_resized")
             os.makedirs(output_subfolder, exist_ok=True)
 
-            for filename in tqdm(os.listdir(subfolder_path)):
+            for filename in os.listdir(subfolder_path):
                 if filename.lower().endswith('.bmp'):
                     input_path = os.path.join(subfolder_path, filename)
                     output_path = os.path.join(output_subfolder, filename)
@@ -30,5 +30,5 @@ def process_folder(folder_name):
 
 if __name__ == "__main__":
     folders = ['data/2025-02-04']
-    for folder in tqdm(folders):
+    for folder in folders:
         process_folder(folder)

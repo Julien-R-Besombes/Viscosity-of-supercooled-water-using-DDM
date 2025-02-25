@@ -1,6 +1,5 @@
 import fastddm as fddm
 from tqdm import tqdm
-from fastddm.fit import simple_structure_function, fit
 import os
 
 def buildDDMFile(prefix, save_path, N=500, px_size=265e-3, fps=100):

@@ -2,14 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
-
 video = 22
 date="data/2025-02-04/"
 prefixe = date+"video"+str(video)+"/video"+str(video)+"_resized/Video"+str(video)+"image"
 N = 500
 images = []
 imDiff = []
-
 
 for i in tqdm(range(N)):
     images.append(plt.imread(prefixe+str(i)+".bmp"))
