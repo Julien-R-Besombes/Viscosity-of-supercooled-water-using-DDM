@@ -8,11 +8,11 @@ temperature_index = data['Index'].astype(int)
 temperature = data['Temperature']
 
 # Define the correction function
-def correct_temperature(temp):
-    return temp + 4.5
+def correct_temperature(temp, a=0, b=4.5):
+    return temp + a*temp + b
 
 # Apply the math function to the temperature data
-corrected_temperature = [correct_temperature(temp) for temp in temperature]
+corrected_temperature = [correct_temperature(temp, -0.0819, 22.73+4.5) for temp in temperature]
 
 # Write the corrected data to a new CSV file
 output_file = prefix + 'corrected_temperature.csv'
