@@ -100,6 +100,3 @@ plt.plot(abscisse, [eta2_mean]*len(a), label=f'eta moyen= {eta2_mean:.6f} (à 20
 plt.ylabel("eta2")
 plt.legend()
 plt.show()
-
-    
-    

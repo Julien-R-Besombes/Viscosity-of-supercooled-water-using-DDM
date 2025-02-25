@@ -46,8 +46,8 @@ def save_as_csv(temperatures, diffusivities, filename):
 
 if __name__ == "__main__":
     # Parameters
-    date = "data/2025-02-18/"
-    video_range = (1, 29)
+    date = "data/2025-02-25/"
+    video_range = (1, 28)
     save_path = date + "extracted/"
     tempFilename = date + "corrected_temperature"
     q_index = (30, 100)
